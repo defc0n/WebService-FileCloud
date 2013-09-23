@@ -1,0 +1,76 @@
+=head1 NAME
+
+WebService::FileCloud - filecloud.io WebService API
+
+=head1 SYNOPSIS
+
+  use WebService::FileCloud;
+
+  $websvc = WebService::FileCloud->new( akey => 'apikey',
+                                        username => 'username',
+                                        password => 'password' );
+
+  $result = $websvc->fetch_apikey();
+
+  # you should check for HTTP request / usage errors first
+  if ( !$result ) {
+
+    die( $websvc->error() );
+  }
+
+  # check for filecloud.io errors in response
+  if ( $result->{'status'} eq 'error' ) {
+
+    die( $result->{'message'} );
+  }
+
+  $akey = $result->{'akey'};
+
+=head1 DESCRIPTION
+
+B<WebService::FileCloud> is a module to communicate with the L<http://filecloud.io> API.
+Documentation for their API is available at L<https://code.google.com/p/filecloud/>.
+
+=head1 CONSTRUCTOR
+
+=over4
+
+=item new ( OPTIONS )
+
+Creates a new B<WebService::FileCloud> object with the arguments given.  All arguments
+are optional, but may be required depending upon the API methods executed.
+
+=over 4
+
+=item akey =E<gt> APIKEY
+
+The API key provided to your account by filecloud.io.  This can be determined via the
+B<fetch_apikey()> method if you provided your B<username> and B<password> of the
+account.  Many methods require this argument to be specified.
+
+=item username =E<gt> USERNAME
+
+The username for your account.  The only method that requires this is
+B<fetch_apikey()>.  Must also be provided with B<password>.
+
+=item password =E<gt> PASSWORD
+
+The password for your account.  The only method that requires this is
+B<fetch_apikey()>.  Must also be provided with B<username>.
+
+=back
+
+=head1 METHODS
+
+=head1 SEE ALSO
+
+L<LWP::UserAgent>,
+L<JSON>
+
+L<http://filecloud.io> and L<https://code.google.com/p/filecloud/>
+
+=head1 AUTHOR
+
+Mitch McCracken E<lt>mrmccrac@gmail.comE<gt>
+
+=cut
