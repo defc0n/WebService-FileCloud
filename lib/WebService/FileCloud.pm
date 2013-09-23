@@ -239,26 +239,6 @@ sub upload_file {
 	return;
     }
 
-    my $ret = open( my $fh, $filename );
-
-    # error opening file
-    if ( !$ret ) {
-
-	$self->{'error'} = "unable to open $filename: $!";
-	return;
-    }
-
-    # read entire file
-    my $data;
-
-    while ( my $buf = <$fh> ) {
-
-	$data .= $buf;
-    }
-
-    # done reading file
-    close( $fh );
-
     my $response = $self->{'ua'}->post( $url,
 					Content_Type => 'form-data',
 					Content => ['Filedata' => [$filename],
