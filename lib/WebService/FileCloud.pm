@@ -26,6 +26,8 @@ sub new {
     $class = $caller if ( !$class );
 
     my $self = {'akey' => undef,
+		'username' => udef,
+		'password' => undef,
 		'timeout' => undef,
 		'error' => '',
 		@_};
@@ -42,14 +44,14 @@ sub fetch_apikey {
 
     my ( $self, %args ) = @_;
 
-    my $username = $args{'username'};
-    my $password = $args{'password'};
+    my $username = $self->{'username'};
+    my $password = $self->{'password'};
 
     # make sure they provided username and password arguments
     if ( !defined( $username ) ||
 	 !defined( $password ) ) {
 	
-        $self->{'error'} = "username and password arguments must be provided";
+        $self->{'error'} = "username and password arguments must be provided in constructor";
         return;
     }
     

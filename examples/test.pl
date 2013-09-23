@@ -15,9 +15,11 @@ use constant PASSWORD => 'PASSWORD';
 use constant UPLOAD_URL => 'URL';
 use constant FILENAME => 'FILENAME';
 
-my $websvc = WebService::FileCloud->new( akey => AKEY );
+my $websvc = WebService::FileCloud->new( akey => AKEY,
+					 username => USERNAME,
+					 password => PASSWORD );
 
-warn( Dumper( $websvc->fetch_apikey( username => USERNAME, password => PASSWORD ) ) );
+warn( Dumper( $websvc->fetch_apikey() ) );
 warn( Dumper( $websvc->fetch_account_details() ) );
 warn( Dumper( $websvc->ping() ) );
 warn( Dumper( $websvc->check_file( ukey => UKEY ) ) );
