@@ -26,7 +26,7 @@ sub new {
     $class = $caller if ( !$class );
 
     my $self = {'akey' => undef,
-		'username' => udef,
+		'username' => undef,
 		'password' => undef,
 		'timeout' => undef,
 		'error' => '',
