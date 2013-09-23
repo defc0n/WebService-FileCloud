@@ -8,5 +8,6 @@ WriteMakefile( NAME => 'WebService::FileCloud',
 	       AUTHOR => ['Mitch McCracken <mrmccrac@gmail.com>'],
 	       PREREQ_PM => {'JSON' => 0,
 			     'LWP::UserAgent' => 0},
-	       BUILD_REQUIRES => {'Test::Pod' => 0,
+	       BUILD_REQUIRES => {'Test::More' => 0,
+				  'Test::Pod' => 0,
 				  'Test::Pod::Coverage' => 0} );
