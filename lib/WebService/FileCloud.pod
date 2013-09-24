@@ -26,6 +26,52 @@ WebService::FileCloud - filecloud.io WebService API
 
   $akey = $result->{'akey'};
 
+  # determine filecloud.io availabiity
+  $result = $websvc->ping();
+
+  if ( !$result ) {
+
+    die( $websvc->error() );
+  }
+
+  if ( $result->{'message'} eq 'pong' ) {
+
+    print "filecloud.io is available\n";
+  }
+
+  # retrieve a URL to upload a file to
+  $result = $websvc->fetch_upload_url();
+
+  if ( !$result ) {
+
+    die( $websvc->error() );
+  }
+
+  # check if filecloud.io couldn't give us a URL
+  if ( $result->{'status'} eq 'error' ) {
+
+    die( $result->{'message'} );
+  }
+
+  $url = $result->{'upload_url'};
+
+  # attempt to upload a file
+  $result = $websvc->upload_file( filename => 'me.png',
+                                  url => $url );
+
+  if ( !$result ) {
+
+    die( $websvc->error() );
+  }
+
+  # check for filecloud.io upload error
+  if ( $result->{'status'} eq 'error' ) {
+
+    die( $result->{'message'} );
+  }
+
+  $ukey = $result->{'ukey'};
+
 =head1 DESCRIPTION
 
 B<WebService::FileCloud> is a module to communicate with the L<http://filecloud.io> API.
@@ -127,7 +173,8 @@ The unique key of the file.  This argument is required.
 
 Returns the URL to use in order to download the specified file.  The B<akey>
 option must be given in the constructor, and the B<ukey> option described
-below must be provided to this method.
+below must be provided to this method.  This method is only available to
+premium account holders of filecloud.io.
 
 =over 4
 
