@@ -81,7 +81,7 @@ Documentation for their API is available at L<https://code.google.com/p/fileclou
 
 =over 4
 
-=item new ( OPTIONS )
+=item new
 
 Creates a new B<WebService::FileCloud> object with the arguments given.  All arguments
 are optional, but may be required depending upon the API methods executed.
@@ -141,7 +141,7 @@ in the constructor to execute this method.
 Returns a URL to use when uploading a file.  No arguments are necessary in the
 constructor to execute this method.
 
-=head2 check_file ( OPTIONS )
+=head2 check_file
 
 Determines if a file is available and returns basic information.  No arguments
 are necessary in the constructor to execute this method, but the B<ukey> option
@@ -155,7 +155,7 @@ The unique key of the file.  This argument is required.
 
 =back
 
-=head2 fetch_file_details ( OPTIONS )
+=head2 fetch_file_details
 
 Returns the full details for a particular file.  The B<akey> option must be
 given in the constructor, and the B<ukey> option described below must be
@@ -169,7 +169,7 @@ The unique key of the file.  This argument is required.
 
 =back
 
-=head2 fetch_download_url ( OPTIONS )
+=head2 fetch_download_url
 
 Returns the URL to use in order to download the specified file.  The B<akey>
 option must be given in the constructor, and the B<ukey> option described
@@ -184,7 +184,7 @@ The unique key of the file.  This argument is required.
 
 =back
 
-=head2 upload_file ( OPTIONS )
+=head2 upload_file
 
 Uploads a file to the URL specified.  The upload url can be determined via
 the B<fetch_upload_url()> method.  The B<akey> option must be given in the
@@ -203,7 +203,7 @@ The URL to upload the file to.  This argument is required.
 
 =back
 
-=head2 fetch_tag_details ( OPTIONS )
+=head2 fetch_tag_details
 
 Returns the details of the tag specified.  The B<akey> option must be
 given in the constructor, and the B<tkey> option described below must be
