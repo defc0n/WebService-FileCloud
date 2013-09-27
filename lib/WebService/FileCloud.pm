@@ -5,6 +5,7 @@ use warnings;
 
 use JSON;
 use LWP::UserAgent;
+use HTTP::Request::Common qw( $DYNAMIC_FILE_UPLOAD );
 
 our $VERSION = '0.2';
 
@@ -34,6 +35,9 @@ sub new {
 
     $self->{'ua'} = LWP::UserAgent->new( timeout => $self->{'timeout'} );
     $self->{'json'} = JSON->new();
+
+    # avoid reading entire file into memory when uploading
+    $HTTP::Request::Common::DYNAMIC_FILE_UPLOAD = 1;
 
     bless( $self, $class );
 
