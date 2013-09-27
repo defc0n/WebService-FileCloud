@@ -36,9 +36,6 @@ sub new {
     $self->{'ua'} = LWP::UserAgent->new( timeout => $self->{'timeout'} );
     $self->{'json'} = JSON->new();
 
-    # avoid reading entire file into memory when uploading
-    $HTTP::Request::Common::DYNAMIC_FILE_UPLOAD = 1;
-
     bless( $self, $class );
 
     return $self;
@@ -244,6 +241,9 @@ sub upload_file {
 	$self->{'error'} = "file $filename does not exist";
 	return;
     }
+
+    # avoid reading entire file into memory when uploading
+    local $HTTP::Request::Common::DYNAMIC_FILE_UPLOAD = 1;
 
     my $response = $self->{'ua'}->post( $url,
 					Content_Type => 'form-data',
