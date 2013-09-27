@@ -5,6 +5,7 @@ use warnings;
 
 use JSON;
 use LWP::UserAgent;
+use HTTP::Request::Common qw( $DYNAMIC_FILE_UPLOAD );
 
 our $VERSION = '0.3';
 
@@ -240,6 +241,9 @@ sub upload_file {
 	$self->{'error'} = "file $filename does not exist";
 	return;
     }
+
+    # avoid reading entire file into memory when uploading
+    local $HTTP::Request::Common::DYNAMIC_FILE_UPLOAD = 1;
 
     my $response = $self->{'ua'}->post( $url,
 					Content_Type => 'form-data',
