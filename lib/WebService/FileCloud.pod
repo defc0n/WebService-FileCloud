@@ -247,7 +247,7 @@ The unique key of the file.  This argument is required.
 
 =head2 upload_file
 
-Uploads a file to the URL specified.  The upload url can be determined via
+Uploads a file to the URL specified.  An upload url can be determined via
 the B<fetch_upload_url()> method.  The B<akey> option must be given in the
 constructor, and the B<filename> and B<url> options described below must be
 provided to this method.
